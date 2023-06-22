@@ -1,0 +1,56 @@
+<div>
+  <label>Server name</label>
+  <input
+    type="text"
+    class="form-control"
+    (input)="inputChangeHandler($event)"
+    [(ngModel)]="serverName"
+  />
+  <button
+    [disabled]="!allowAddServer"
+    class="btn btn-primary"
+    (click)="onCreateServe()"
+  >
+    Add server
+  </button>
+
+  <p *ngIf="serverCreated; else noServer">{{ serverCreatedStatus }}</p>
+  <ng-template #noServer>
+    <p>No server created!</p>
+  </ng-template>
+</div>
+<hr />
+<div>
+  <label>Username</label>
+  <input
+    class="form-control"
+    type="text"
+    [(ngModel)]="username"
+    (input)="usernameChangeHandler($event)"
+  />
+  <p>{{ username }}</p>
+  <button
+    [disabled]="!username"
+    class="btn btn-primary"
+    (click)="resetUsername()"
+  >
+    reset
+  </button>
+</div>
+<hr />
+<div>
+  <button (click)="displayParagraphHandler()" class="btn btn-secondary">
+    Display details
+  </button>
+  <p *ngIf="showParagraph">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, nobis eos
+    rerum cum debitis inventore! A quasi dolorem vel exercitationem cum harum
+    similique perspiciatis corporis in, minima, quisquam consequuntur?
+    Consectetur?
+  </p>
+  <ul>
+    <li *ngFor="let click of buttonClicks">{{ click ? "Show" : "Hide" }}</li>
+  </ul>
+</div>
+<hr />
+<app-server *ngFor="let server of servers"></app-server>
